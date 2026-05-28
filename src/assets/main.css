@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "AgaveNerdFontPropo";
+  src: url("AgaveNerdFontPropo-Regular.ttf");
+}
+:root{
+  --main-color: rgb(45, 164, 87);
+  --upper-border-color:rgb(55, 200, 106);
+  --lower-border-color:rgb(23, 85, 45);
+}
+*{
+  font-family:"AgaveNerdFontPropo";
+  font-size:15px;
+  margin:0;
+  box-sizing:border-box;
+}
+#searchbar{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  gap:5px;
+  margin-bottom: 50px;
+  margin-top:5px;
+}
+.banditem{
+  width:124px;
+  padding:10px;
+  border:2px solid black;
+  border-radius: 20px;
+  img{
+    width:100px;
+    height: 100px;
+  }
+  span{
+    text-wrap: wrap;
+  }
+}
+.albumitem{
+  width:fit-content;
+  padding:10px;
+  border:2px solid black;
+  border-radius: 20px;
+  img{
+    width:100px;
+    height: 100px;
+  }
+}
