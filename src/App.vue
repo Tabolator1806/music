@@ -1,17 +1,17 @@
-
 <template>
   <header>
     <SearchBar/>
-    <Results/>
   </header>
+  <body>
+    <RouterView/>
+  </body>
 </template>
 <script>
   import SearchBar from "@/components/SearchBar.vue";
-  import Results from "@/components/Results.vue"
   import {defineComponent} from "vue";
 
   export default defineComponent({
-    components: {SearchBar, Results}
+    components: {SearchBar}
   })
 
 </script>

@@ -27,6 +27,8 @@ const post = (url, userObject) => new Promise((resolve, reject) => {
     }, 500 + Math.random() * 1000);
 })
 const search = (name) => get("http://192.168.1.22/search/?name="+name)
+const bandInformation = (id) => get("http://192.186.1.22/getBand/?id="+id)
 export {
-    search
+    search,
+    bandInformation
 }
