@@ -42,7 +42,7 @@ export default {
         <span class="year">{{year}}</span>
       </div>
     </div>
-    <div class="albums">
+    <div class="songs">
       <span v-for="song in songs">{{song}}</span>
     </div>
   </div>
