@@ -1,9 +1,10 @@
 <script>
 import AlbumItem from "@/components/AlbumItem.vue";
+import SongItem from "@/components/SongItem.vue";
 
 export default {
   name: "BandView",
-  components: {AlbumItem},
+  components: {SongItem, AlbumItem},
   data(){
     return{
       songs:[],
@@ -43,7 +44,7 @@ export default {
       </div>
     </div>
     <div class="songs">
-      <span v-for="song in songs">{{song}}</span>
+      <SongItem v-for="song in songs" :song="song" :isalbum="true"/>
     </div>
   </div>
 </template>

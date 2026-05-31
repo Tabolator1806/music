@@ -9,7 +9,6 @@
 
 <script>
 export default {
-  components: {BandItem},
   props:['info'],
   computed:{
     source(){

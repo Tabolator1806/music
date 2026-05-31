@@ -1,5 +1,6 @@
 <template>
   <header>
+    <RouterLink to="/">Home</RouterLink>
     <SearchBar/>
   </header>
   <body>

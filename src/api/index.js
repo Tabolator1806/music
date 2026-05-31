@@ -11,7 +11,6 @@ const get = (url) => new Promise((resolve, reject) => {
             })
 
     }, 500 + Math.random() * 1000);
-
 })
 const post = (url, userObject) => new Promise((resolve, reject) => {
     console.log(userObject)
