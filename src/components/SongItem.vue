@@ -16,7 +16,7 @@ export default {
       order:0,
       albumID:0,
       filetype:"",
-      albumName:"aaa",
+      albumName:"",
       bandName:""
     }
   },
@@ -34,8 +34,11 @@ export default {
   },
   methods:{
     setTrack(){
+      this.$store.dispatch("stopTrack")
+      this.$store.commit("SET_CURRENT_SONG",this.data)
       const audio = new Audio(this.audiosource)
-      audio.play()
+      this.$store.commit("SET_CURRENT_TRACK",audio)
+      this.$store.dispatch("playTrack")
     },
     addZero(inttime) {
       const time = String(inttime)
@@ -52,7 +55,10 @@ export default {
 <div class="songitem" @click="setTrack">
   <div class="image" v-if="isalbum">{{order}}.</div>
   <img class="image" :src="imagesource" alt="name" v-else>
-  <div class="name">{{name}}</div>
+  <div class="info">
+    <div class="name">{{name}}</div>
+
+  </div>
 
 </div>
 </template>
