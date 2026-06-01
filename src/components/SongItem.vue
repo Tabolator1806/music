@@ -57,7 +57,7 @@ export default {
   <img class="image" :src="imagesource" alt="name" v-else>
   <div class="info">
     <div class="name">{{name}}</div>
-
+    <div class="additional" v-if="!isalbum">{{bandName}} - {{albumName}}</div>
   </div>
 
 </div>

@@ -12,6 +12,9 @@ export default {
       if (this.volume>0.5) return "󰕾"
       if (this.volume<=0.5&&this.volume!=0) return "󰖀"
       if (this.volume==0) return "󰝟"
+    },
+    audioDuration(){
+      return this.$store.getters.GET_CURRENT_TRACK.audioDuration
     }
   },
   methods:{
@@ -51,11 +54,22 @@ export default {
 
 <template>
   <div id="musicplayer">
-    <img :src="imagesource" alt="album image">
-    <button v-if="isAudioPlaying" @click="pauseAudio"></button>
-    <button v-else @click="playAudio"></button>
-    <button @click="muteVolume">{{volumeIcon}}</button>
-    <input type="range" v-model="volume" @input="changeVolume" step="0.01" max="1">
+    <div class="songInfo">
+      <img :src="imagesource" alt="album image">
+      <span>Nazwa</span>
+    </div>
+    <div class="controls">
+      <div class="audioLengthDiv">
+        <input type="range" class="audioLength" :max="audioDuration"/>
+      </div>
+      <div class="buttons">
+        <button v-if="isAudioPlaying" @click="pauseAudio"></button>
+        <button v-else @click="playAudio"></button>
+        <button @click="muteVolume">{{volumeIcon}}</button>
+        <input type="range" v-model="volume" @input="changeVolume" step="0.01" max="1">
+      </div>
+    </div>
+
   </div>
 </template>
 
