@@ -1,12 +1,4 @@
 const song = {
-    audiosource:"",
-    song: new Audio(),
-    play(){
-        console.log(song)
-        song.play()
-    },
-    pause(){
-        song.pause()
-    }
+    current_track: new Audio()
 }
 export default song

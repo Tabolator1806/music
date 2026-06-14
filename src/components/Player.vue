@@ -20,8 +20,7 @@ export default {
   },
   methods:{
     playAudio(){
-      this.$store.dispatch("playTrack")
-      console.log(this.$store.getters.GET_CURRENT_TRACK)
+      song.current_track.play()
     },
     pauseAudio(){
       this.$store.dispatch("stopTrack")
