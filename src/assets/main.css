@@ -124,6 +124,18 @@ footer{
   align-content: center;
   .songInfo{
     justify-self: start;
+    display: flex;
+    img{
+      width: 100px;
+      height:100px;
+    }
+    .info{
+      display: flex;
+      flex-direction: column;
+      .songName{
+        font-size: 25px;
+      }
+    }
   }
   .controls{
     width: 100%;
@@ -136,6 +148,7 @@ footer{
     }
   }
   .volumeControl{
+    margin-right: 20px;
     justify-self: end;
   }
 }

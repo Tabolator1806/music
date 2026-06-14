@@ -18,7 +18,8 @@ export default {
       albumID:0,
       filetype:"",
       albumName:"",
-      bandName:""
+      bandName:"",
+      bandID:0
     }
   },
   created() {
@@ -31,6 +32,7 @@ export default {
         .then(data=>{
           this.albumName = data.album.name
           this.bandName = data.album['band name']
+          this.bandID = data.album['band id']
         })
   },
   methods:{
@@ -41,7 +43,10 @@ export default {
       // this.$store.commit("SET_CURRENT_TRACK",audio)
       // this.$store.dispatch("playTrack")
       // this.$store.commit("SET_CURRENT_SONG",{data:this.$data,audio:this.audiosource,image:this.imagesource})
+      song.current_track.pause()
       song.current_track = new Audio(this.audiosource)
+      song.data = this.$data
+      song.imagesrc = this.imagesource
       song.current_track.play()
     },
     addToQueue(){
@@ -65,7 +70,7 @@ export default {
     <img class="image" :src="imagesource" alt="name" v-else>
     <div class="info">
       <div class="name">{{name}}</div>
-      <div class="additional" v-if="!isalbum">{{bandName}} - {{albumName}}</div>
+      <div class="additional" v-if="!isalbum"> <RouterLink :to="`/bands/${bandID}`">{{bandName}}</RouterLink> - <RouterLink :to="`/albums/${albumID}`">{{albumName}}</RouterLink></div>
     </div>
   </div>
   <button class="addToQueue" @click="addToQueue">add to queue</button>
