@@ -1,4 +1,5 @@
 <script>
+import song from "@/api/song.js";
 export default {
   name: "SongItem",
   props:['song','isalbum'],
@@ -39,6 +40,12 @@ export default {
       const audio = new Audio(this.audiosource)
       this.$store.commit("SET_CURRENT_TRACK",audio)
       this.$store.dispatch("playTrack")
+      this.$store.commit("SET_CURRENT_SONG",{data:this.$data,audio:this.audiosource,image:this.imagesource})
+      // song.song = new Audio(this.audiosource)
+      // song.song.play()
+    },
+    addToQueue(){
+      this.$store.commit("ADD_TO_QUEUE",this.$data)
     },
     addZero(inttime) {
       const time = String(inttime)
@@ -52,13 +59,16 @@ export default {
 </script>
 
 <template>
-<div class="songitem" @click="setTrack">
-  <div class="image" v-if="isalbum">{{order}}.</div>
-  <img class="image" :src="imagesource" alt="name" v-else>
-  <div class="info">
-    <div class="name">{{name}}</div>
-    <div class="additional" v-if="!isalbum">{{bandName}} - {{albumName}}</div>
+<div class="songitem">
+  <div class="playSong" @click="setTrack">
+    <div class="image" v-if="isalbum">{{order}}.</div>
+    <img class="image" :src="imagesource" alt="name" v-else>
+    <div class="info">
+      <div class="name">{{name}}</div>
+      <div class="additional" v-if="!isalbum">{{bandName}} - {{albumName}}</div>
+    </div>
   </div>
+  <button class="addToQueue" @click="addToQueue">add to queue</button>
 
 </div>
 </template>

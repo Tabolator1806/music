@@ -66,6 +66,9 @@ const songs = {
             state.playing = 0
             state.current_track.pause()
         }
+    },
+    trackTime() {
+
     }
 }
 export default songs
