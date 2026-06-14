@@ -23,7 +23,7 @@ export default {
       song.current_track.play()
     },
     pauseAudio(){
-      this.$store.dispatch("stopTrack")
+      song.current_track.pause()
     },
     changeVolume(){
       this.$store.commit("SET_VOLUME",this.volume)
