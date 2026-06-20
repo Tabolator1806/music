@@ -37,12 +37,6 @@ export default {
   },
   methods:{
     setTrack(){
-      // this.$store.dispatch("stopTrack")
-      // this.$store.commit("SET_CURRENT_SONG",this.data)
-      // const audio = new Audio(this.audiosource)
-      // this.$store.commit("SET_CURRENT_TRACK",audio)
-      // this.$store.dispatch("playTrack")
-      // this.$store.commit("SET_CURRENT_SONG",{data:this.$data,audio:this.audiosource,image:this.imagesource})
       song.current_track.pause()
       song.current_track = new Audio(this.audiosource)
       song.data = this.$data
@@ -50,7 +44,7 @@ export default {
       song.current_track.play()
     },
     addToQueue(){
-      this.$store.commit("ADD_TO_QUEUE",this.$data)
+      song.queue.push({data:this.$data,audio:this.audiosource,image:this.imagesource})
     },
     addZero(inttime) {
       const time = String(inttime)

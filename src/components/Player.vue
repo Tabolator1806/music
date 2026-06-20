@@ -10,10 +10,7 @@ export default {
       if (this.volume>0.5) return "󰕾"
       if (this.volume<=0.5&&this.volume!=0) return "󰖀"
       if (this.volume==0) return "󰝟"
-    },
-    audioDuration(){
-      return this.$store.getters.GET_CURRENT_TRACK.audioDuration
-    },
+    }
   },
   methods:{
     playAudio(){
@@ -36,8 +33,23 @@ export default {
         song.current_track.volume=this.savedVolume
       }
     },
-    trackTime(){
-      this.current_time = song.current_track.currentTime
+    nextInQueue(){
+      song.current_track.pause()
+      if (song.queue.length >= 1){
+        song.data = song.queue[0].data
+        song.current_track = new Audio(song.queue[0].audio)
+        song.imagesrc = song.queue[0].image
+        song.queue.shift()
+        song.current_track.play()
+      }
+      else{
+        this.name = "No Song"
+        this.albumName = "No Album"
+        this.bandName = "No Band"
+        this.albumID = 0
+        this.bandID = 0
+        this.imagesource = "http://192.168.1.22/static/bands/noAudio.png"
+      }
     }
   },
   data(){
@@ -46,26 +58,31 @@ export default {
       savedVolume:1,
       current_time:0,
       name:"",
-      imagesource:"http://192.168.1.22/static/bands/noAudio.png",
+      imagesource:"",
       albumID:0,
       albumName:"",
       bandName:"",
       bandID:0,
-      paused:0
+      paused:0,
+      queue:[],
+      audioDuration:0
     }
   },
   created() {
     this.savedVolume = this.volume
     setInterval(()=> {
-      if (!song.current_track.paused){
-        this.audioDuration = song.current_track.duration
-        this.name = song.data.name
-        this.imagesource = song.imagesrc
-        this.albumID = song.data.albumID
-        this.albumName = song.data.albumName
-        this.bandName = song.data.bandName
-        this.bandID = song.data.bandID
-        this.trackTime()
+      this.audioDuration = song.current_track.duration
+      this.name = song.data.name
+      this.imagesource = song.imagesrc
+      this.albumID = song.data.albumID
+      this.albumName = song.data.albumName
+      this.bandName = song.data.bandName
+      this.bandID = song.data.bandID
+      song.current_track.volume = this.volume
+      this.queue = song.queue
+      this.current_time = song.current_track.currentTime
+      if (this.current_time == song.current_track.duration){
+        this.nextInQueue()
       }
     },100)
   }
@@ -89,11 +106,12 @@ export default {
       <div class="buttons">
         <button v-if="!paused" @click="pauseAudio"></button>
         <button v-else @click="playAudio"></button>
+        <button @click="nextInQueue">󰒭</button>
       </div>
     </div>
     <div class="volumeControl">
       <button @click="muteVolume">{{volumeIcon}}</button>
-      <input type="range" v-model="song.current_track.volume" @input="changeVolume" step="0.01" max="1">
+      <input type="range" v-model="volume" @input="changeVolume" step="0.01" max="1">
     </div>
   </div>
 </template>

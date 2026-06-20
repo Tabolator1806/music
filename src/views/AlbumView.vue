@@ -14,7 +14,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.params.id)
     fetch("http://192.168.1.22/getAlbum/?id="+this.$route.params.id)
         .then(response=>response.json())
         .then(data=>{
