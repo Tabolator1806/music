@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import global from "@/api/global.js";
 const get = (url) => new Promise((resolve, reject) => {
     setTimeout(() => {
         axios.get(url)
@@ -25,8 +25,8 @@ const post = (url, userObject) => new Promise((resolve, reject) => {
             })
     }, 500 + Math.random() * 1000);
 })
-const search = (name) => get("http://192.168.1.22/search/?name="+name)
-const bandInformation = (id) => get("http://192.186.1.22/getBand/?id="+id)
+const search = (name) => get("http://"+global.server_ip+"/search/?name="+name)
+const bandInformation = (id) => get("http://"+global.server_ip+"/getBand/?id="+id)
 export {
     search,
     bandInformation

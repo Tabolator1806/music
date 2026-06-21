@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import global from "@/api/global.js";
   export default {
     props:['info'],
     data(){
@@ -19,7 +20,7 @@
     },
     computed:{
       source(){
-        return "http://192.168.1.22/static/bands/" + this.name + ".png"
+        return "http://"+global.server_ip+"/static/bands/" + this.name + ".png"
       }
     },
     created() {

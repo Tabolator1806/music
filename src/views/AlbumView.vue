@@ -1,7 +1,7 @@
 <script>
 import AlbumItem from "@/components/AlbumItem.vue";
 import SongItem from "@/components/SongItem.vue";
-
+import global from "@/api/global.js";
 export default {
   name: "BandView",
   components: {SongItem, AlbumItem},
@@ -14,7 +14,7 @@ export default {
     }
   },
   created() {
-    fetch("http://192.168.1.22/getAlbum/?id="+this.$route.params.id)
+    fetch("http://"+global.server_ip+"/getAlbum/?id="+this.$route.params.id)
         .then(response=>response.json())
         .then(data=>{
           this.songs = data.songs
@@ -26,7 +26,7 @@ export default {
   },
   computed:{
     imageSource(){
-      return "http://192.168.1.22/static/music/" + this.name + "/cover.jpg"
+      return "http://"+global.server_ip+"/static/music/" + this.name + "/cover.jpg"
     }
   }
 }

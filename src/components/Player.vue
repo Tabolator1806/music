@@ -1,5 +1,6 @@
 <script>
 import song from "@/api/song.js";
+import global from "@/api/global.js";
 export default {
   name: "Player",
   computed:{
@@ -48,7 +49,7 @@ export default {
         this.bandName = "No Band"
         this.albumID = 0
         this.bandID = 0
-        this.imagesource = "http://192.168.1.22/static/bands/noAudio.png"
+        this.imagesource = "http://"+global.server_ip+"/static/bands/noAudio.png"
       }
     }
   },

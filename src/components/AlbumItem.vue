@@ -8,11 +8,12 @@
 </template>
 
 <script>
+import global from "@/api/global.js";
 export default {
   props:['info'],
   computed:{
     source(){
-      return "http://192.168.1.22/static/music/" + this.name + "/cover.jpg"
+      return "http://"+global.server_ip+"/static/music/" + this.name + "/cover.jpg"
     }
   },
   data(){

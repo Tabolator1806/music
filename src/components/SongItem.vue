@@ -1,14 +1,15 @@
 <script>
 import song from "@/api/song.js";
+import global from "@/api/global.js";
 export default {
   name: "SongItem",
   props:['song','isalbum'],
   computed: {
     imagesource() {
-      return "http://192.168.1.22/static/music/" + this.albumName + "/cover.jpg"
+      return "http://"+global.server_ip+"/static/music/" + this.albumName + "/cover.jpg"
     },
     audiosource() {
-      return `http://192.168.1.22/static/music/${this.albumName}/${this.addZero(this.order)} ${this.bandName} - ${this.name}.${this.filetype}`
+      return `http://${global.server_ip}/static/music/${this.albumName}/${this.addZero(this.order)} ${this.bandName} - ${this.name}.${this.filetype}`
     }
   },
   data(){
@@ -27,7 +28,7 @@ export default {
     this.order = this.$props.song[2]
     this.albumID = this.$props.song[3]
     this.filetype = this.$props.song[4]
-    fetch("http://192.168.1.22/getAlbum/?id="+this.albumID)
+    fetch("http://"+global.server_ip+"/getAlbum/?id="+this.albumID)
         .then(response=>response.json())
         .then(data=>{
           this.albumName = data.album.name
