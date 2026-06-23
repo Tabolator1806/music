@@ -52,6 +52,21 @@ const searched ={
             .finally(() => {
                 commit("SET_SEARCH_LOADING", false)
             })
+        },
+        SEARCH_BANDS({state,commit}){
+            commit("SET_SEARCH_LOADING",true)
+            search("")
+                .then(data => {
+                    commit("SET_BANDS",data.bands)
+                    commit("SET_ALBUMS",[])
+                    commit("SET_SONGS",[])
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+                .finally(() => {
+                    commit("SET_SEARCH_LOADING", false)
+                })
         }
     }
 }

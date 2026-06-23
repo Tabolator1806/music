@@ -1,7 +1,7 @@
 <template>
   <div id="searchbar">
-    <span></span>
-    <input v-model="searched" @keydown.enter="search(searched)">
+    <input v-model="searched" @keydown.enter="search" @input="show_bands">
+    <button @click="search"></button>
   </div>
 </template>
 <script>
@@ -13,8 +13,14 @@
       }
     },
     methods:{
-      search(name){
+      search(){
+        name = this.searched
         this.$store.dispatch("SEARCH",name)
+      },
+      show_bands(){
+        if (this.searched.length==0){
+          this.$store.dispatch("SEARCH_BANDS")
+        }
       }
     }
   }

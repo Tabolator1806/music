@@ -15,12 +15,10 @@ export default {
   },
   methods:{
     playAudio(){
-      this.paused = 0
       song.current_track.volume = this.savedVolume
       song.current_track.play()
     },
     pauseAudio(){
-      this.paused = 1
       song.current_track.pause()
     },
     changeVolume(){
@@ -64,7 +62,6 @@ export default {
       albumName:"",
       bandName:"",
       bandID:0,
-      paused:0,
       queue:[],
       audioDuration:0
     }
@@ -105,7 +102,7 @@ export default {
         <input type="range" class="audioLength" :max="song.current_track.duration" :value="current_time" v-model="song.current_track.currentTime"/>
       </div>
       <div class="buttons">
-        <button v-if="!paused" @click="pauseAudio"></button>
+        <button v-if="!song.current_track.paused" @click="pauseAudio"></button>
         <button v-else @click="playAudio"></button>
         <button @click="nextInQueue">󰒭</button>
       </div>

@@ -5,6 +5,8 @@
     <AlbumItem :info="album" v-for="album in get_albums"/>
     <SongItem v-for="song in get_songs" :song="song"/>
   </div>
+  <BandItem :info="band" v-for="band in bands"/>
+
 </template>
 
 <script>
@@ -12,7 +14,7 @@ import BandItem from "@/components/BandItem.vue";
 import AlbumItem from "@/components/AlbumItem.vue";
 import SongItem from "@/components/SongItem.vue";
 export default {
-  computed:{ //<img src="http://192.168.1.22/static/music/Hybrid%20Theory/cover.jpg" alt="aaa">
+  computed:{
     get_bands(){
       return this.$store.getters.GET_BANDS
     },
@@ -29,6 +31,15 @@ export default {
   components:{
     SongItem,
     BandItem, AlbumItem
+  },
+  created() {
+    this.$store.dispatch("SEARCH_BANDS")
+    this.bands = this.$store.GET_BANDS
+  },
+  data(){
+    return{
+      bands:[]
+    }
   }
 }
 </script>
