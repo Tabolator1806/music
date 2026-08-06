@@ -11,6 +11,7 @@ const song = {
         bandName: "No Band",
         bandID: 0
     },
-    queue: []
+    queue: [],
+    history: []
 }
 export default song

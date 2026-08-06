@@ -5,6 +5,7 @@
   </header>
   <body>
     <RouterView/>
+    <QueueBar/>
   </body>
   <footer>
     <Player/>
@@ -14,9 +15,10 @@
   import SearchBar from "@/components/SearchBar.vue";
   import {defineComponent} from "vue";
   import Player from "@/components/Player.vue";
+  import QueueBar from "@/components/QueueBar.vue";
 
   export default defineComponent({
-    components: {SearchBar,Player}
+    components: {SearchBar,Player,QueueBar}
   })
 
 </script>

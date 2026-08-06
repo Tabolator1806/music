@@ -18,6 +18,10 @@ header{
 }
 body{
   height:900px;
+  width:100%;
+  display: grid;
+  grid-template-columns: 90% 10%;
+
 }
 footer{
   height: 100px;

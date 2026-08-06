@@ -49,6 +49,9 @@ export default {
         this.bandID = 0
         this.imagesource = "http://"+global.server_ip+"/static/bands/noAudio.png"
       }
+    },
+    prevInQueue(){
+
     }
   },
   data(){
@@ -102,6 +105,7 @@ export default {
         <input type="range" class="audioLength" :max="song.current_track.duration" :value="current_time" v-model="song.current_track.currentTime"/>
       </div>
       <div class="buttons">
+        <button @click="prevInQueue">prev</button>
         <button v-if="!song.current_track.paused" @click="pauseAudio"></button>
         <button v-else @click="playAudio"></button>
         <button @click="nextInQueue">󰒭</button>
