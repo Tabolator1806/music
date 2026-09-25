@@ -43,8 +43,10 @@ export default {
       song.data = this.$data
       song.imagesrc = this.imagesource
       song.current_track.play()
+      this.addToQueue()
     },
     addToQueue(){
+      song.data.queueIndex += 1
       song.queue.push({data:this.$data,audio:this.audiosource,image:this.imagesource})
     },
     addZero(inttime) {

@@ -9,7 +9,8 @@ const song = {
         filetype: "",
         albumName: "No Album",
         bandName: "No Band",
-        bandID: 0
+        bandID: 0,
+        queueIndex:0
     },
     queue: [],
     history: []

@@ -15,10 +15,12 @@ export default {
   },
   methods:{
     playAudio(){
+      this.paused = 0
       song.current_track.volume = this.savedVolume
       song.current_track.play()
     },
     pauseAudio(){
+      this.paused = 1
       song.current_track.pause()
     },
     changeVolume(){
@@ -32,13 +34,15 @@ export default {
         song.current_track.volume=this.savedVolume
       }
     },
+
+
     nextInQueue(){
       song.current_track.pause()
       if (song.queue.length >= 1){
-        song.data = song.queue[0].data
-        song.current_track = new Audio(song.queue[0].audio)
-        song.imagesrc = song.queue[0].image
-        song.queue.shift()
+        this.queueIndex += 1
+        song.data = song.queue[this.queueIndex].data
+        song.current_track = new Audio(song.queue[this.queueIndex].audio)
+        song.imagesrc = song.queue[this.queueIndex].image
         song.current_track.play()
       }
       else{
@@ -66,7 +70,9 @@ export default {
       bandName:"",
       bandID:0,
       queue:[],
-      audioDuration:0
+      audioDuration:0,
+      queueIndex:0,
+      paused:0
     }
   },
   created() {
@@ -81,6 +87,7 @@ export default {
       this.bandID = song.data.bandID
       song.current_track.volume = this.volume
       this.queue = song.queue
+      //this.queueIndex = song.data.queueIndex
       this.current_time = song.current_track.currentTime
       if (this.current_time == song.current_track.duration){
         this.nextInQueue()
@@ -106,7 +113,7 @@ export default {
       </div>
       <div class="buttons">
         <button @click="prevInQueue">prev</button>
-        <button v-if="!song.current_track.paused" @click="pauseAudio"></button>
+        <button v-if="!paused" @click="pauseAudio"></button>
         <button v-else @click="playAudio"></button>
         <button @click="nextInQueue">󰒭</button>
       </div>
